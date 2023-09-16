@@ -12,11 +12,11 @@
 2. Download [Protogenchik.jar](https://github.com/Flioris/Protogenchik/releases) or generate it yourself and place it in the created folder.
 3. In the folder, create a file "start.bat".
 4. Open "start.bat" with a text editor and paste:
-  ```bat
-  @ECHO OFF
-  java -jar Protogenchik.jar
-  PAUSE
-  ```
+```bat
+@ECHO OFF
+java -jar Protogenchik.jar
+PAUSE
+```
 5. Run "start.bat" and wait until the config is generated and an error appears.
 6. Open "config.json" and paste the token of your own bot and save.
 7. Run "start.bat".
