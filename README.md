@@ -6,6 +6,8 @@
 **Anti-nuke bot for setting limits on various actions and protecting servers.** It also has a blacklist to which you can add nuke-bots and nukers. Server settings and the blacklist are stored in the SQLite database. You can configure bot messages in the JSON config. You can use this open source bot if you don't trust other bots or as a basis for your own bot, but don't forget that the bot is GNU GPL licensed.
 
 ## How to use
+**Required: Java 20.0.2 or higher.**
+**Installation and configuration instructions:**
 1. Create a folder for the bot.
 2. Download [Protogenchik.jar](https://github.com/Flioris/Protogenchik/releases) or generate it yourself and place it in the created folder.
 3. In the folder, create a file "start.bat".
