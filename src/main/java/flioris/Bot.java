@@ -1,18 +1,18 @@
 /**
  * Copyright © 2023 Flioris
- *
+ * <p>
  * This file is part of Protogenchik.
- *
+ * <p>
  * Protogenchik is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
@@ -20,11 +20,13 @@
 package flioris;
 
 import flioris.db.Core;
+import flioris.listener.CommandListener;
 import flioris.listener.MainListener;
 import flioris.listener.nuke.ChannelEventListener;
 import flioris.listener.nuke.MemberEventListener;
 import flioris.listener.nuke.RoleEventListener;
-import flioris.util.Config;
+import flioris.util.ConfigHandler;
+import flioris.util.ProtectedGuildsCache;
 import lombok.Getter;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -37,26 +39,24 @@ import net.dv8tion.jda.api.interactions.commands.build.SubcommandData;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
 public class Bot {
-    @Getter 
+    @Getter
     private static JDA jda;
-    @Getter 
-    private static Core db;
+    @Getter
+    private static Core core;
 
     public static void main(String[] args) {
-        Config.load();
-
-        jda = JDABuilder.createDefault(Config.getString("bot.token"))
+        core = new Core();
+        ConfigHandler.load();
+        jda = JDABuilder.createDefault(ConfigHandler.getString("bot.token"))
                 .enableIntents(GatewayIntent.GUILD_MEMBERS)
-                .addEventListeners(
-                        new ChannelEventListener(),
-                        new MemberEventListener(),
-                        new RoleEventListener(),
-                        new MainListener())
                 .build();
-
+        jda.addEventListener(new ChannelEventListener(),
+                new MemberEventListener(),
+                new RoleEventListener(),
+                new CommandListener(),
+                new MainListener());
         initCommands();
-
-        db = new Core();
+        ProtectedGuildsCache.putAll(core.getProtectedGuilds());
     }
 
     private static void initCommands() {
@@ -120,7 +120,9 @@ public class Bot {
                         .setGuildOnly(true)
                         .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.ADMINISTRATOR))
                         .addOptions(new OptionData(OptionType.CHANNEL, "channel", "Select a channel for the bot.", true)),
-                Commands.slash("settings", "Display server settings.").setGuildOnly(true)
+                Commands.slash("settings", "Display server settings.")
+                        .setGuildOnly(true)
+                        .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.ADMINISTRATOR))
         ).queue();
     }
 }

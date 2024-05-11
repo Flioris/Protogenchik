@@ -46,8 +46,13 @@
         }
       },
       "nontextChannel": {
-        "tittle": ":warning:  Oops, an error has occurred!",
+        "title": ":warning:  Oops, an error has occurred!",
         "description": "You cannot set a non-text channel for a bot.",
+        "color": "#FFD800"
+      },
+      "whitelistFull": {
+        "title": ":warning:  Oops, an error has occurred!",
+        "description": "You cannot add more than 10 people to the whitelist.",
         "color": "#FFD800"
       },
       "reaction": {
@@ -102,9 +107,14 @@
         "description": "Administrator {admin} removed the user {user} from the whitelist. Now he has limits and cannot set up the bot, even if he has administrator rights.",
         "color": "#FFD800"
       },
-      "noRights": {
+      "userWithoutRights": {
         "title": ":negative_squared_cross_mark:  You don't have enough rights.",
         "description": "You don't have enough rights. To configure this, you must be in the whitelist.",
+        "color": "#FFD800"
+      },
+      "botWithoutRights": {
+        "title": ":negative_squared_cross_mark:  The bot doesn't have enough rights.",
+        "description": "The bot needs the following rights: {permissions}.",
         "color": "#FFD800"
       },
       "langSet": {
@@ -154,8 +164,13 @@
         }
       },
       "nontextChannel": {
-        "tittle": ":warning:  Упс, произошла ошибка!",
+        "title": ":warning:  Упс, произошла ошибка!",
         "description": "Вы не можете установить не текстовый канал для бота.",
+        "color": "#FFD800"
+      },
+      "whitelistFull": {
+        "title": ":warning:  Упс, произошла ошибка!",
+        "description": "Вы не можете добавить более 10 человек в вайтлист.",
         "color": "#FFD800"
       },
       "reaction": {
@@ -210,9 +225,14 @@
         "description": "Администратор {admin} удалил пользователя {user} из вайтлиста.",
         "color": "#FFD800"
       },
-      "noRights": {
+      "userWithoutRights": {
         "title": ":negative_squared_cross_mark:  У вас недостаточно прав.",
         "description": "У вас недостаточно прав. Чтобы настраивать это, вам необходимо находиться в вайтлисте.",
+        "color": "#FFD800"
+      },
+      "botWithoutRights": {
+        "title": ":negative_squared_cross_mark:  У бота недостаточно прав.",
+        "description": "Боту нужны следующие права: {permissions}.",
         "color": "#FFD800"
       },
       "langSet": {

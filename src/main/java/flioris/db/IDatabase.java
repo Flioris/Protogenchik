@@ -1,18 +1,18 @@
 /**
  * Copyright © 2023 Flioris
- *
+ * <p>
  * This file is part of Protogenchik.
- *
+ * <p>
  * Protogenchik is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
@@ -21,24 +21,27 @@ package flioris.db;
 
 import flioris.util.GuildSettings;
 
-import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public interface IDatabase {
-    void addGuild(long guildId);
+    void addGuild(String guildId);
 
-    void removeGuild(long guildId);
+    void removeGuild(String guildId);
 
-    void updateGuild(long guildId, String key, Object value);
+    void updateGuild(String guildId, String key, Object value);
 
-    Boolean guildsContain(long guildId);
+    Map<String, GuildSettings> getProtectedGuilds();
 
-    GuildSettings getGuildSettings(long guildId);
+    boolean guildsContain(String guildId);
 
-    HashSet<Long> getGuilds();
+    GuildSettings getGuildSettings(String guildId);
 
-    void blacklistAdd(String text);
+    Set<String> getGuilds();
 
-    void blacklistRemove(String text);
+    void blacklistAdd(String id);
 
-    Boolean blacklistContains(String text);
+    void blacklistRemove(String id);
+
+    boolean blacklistContains(String id);
 }
